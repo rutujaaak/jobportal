@@ -6,11 +6,9 @@ const dotenv = require("dotenv");
 dotenv.config();
 const app = express();
 
-// Middleware setup
 app.use(cors());
 app.use(express.json());
 
-// MySQL connection setup
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -18,7 +16,6 @@ const db = mysql.createConnection({
   database: process.env.DB_NAME,
 });
 
-// Connect to MySQL
 db.connect((err) => {
   if (err) {
     console.error("Database connection failed: ", err);
@@ -27,7 +24,6 @@ db.connect((err) => {
   console.log("Connected to MySQL");
 });
 
-// Endpoint to save data (from frontend)
 app.post("/save-data", (req, res) => {
   const { name, email, phone } = req.body;
 
@@ -41,7 +37,6 @@ app.post("/save-data", (req, res) => {
   });
 });
 
-// Start the server
 app.listen(3001, () => {
   console.log("Server running on port 3001");
 });

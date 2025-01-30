@@ -2,20 +2,20 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import Navbar from "./navbar"; // Import the Navbar component
+import Navbar from "./navbar";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
-      <Navbar /> {/* Include Navbar at the top */}
+      <Navbar />
       <div className="flex flex-col items-center justify-center min-h-screen">
         <div className="flex gap-4">
-          <a href="https://vite.dev" target="_blank">
+          <a href="https://vite.dev" target="_blank" rel="noopener noreferrer">
             <img src={viteLogo} className="logo" alt="Vite logo" />
           </a>
-          <a href="https://react.dev" target="_blank">
+          <a href="https://react.dev" target="_blank" rel="noopener noreferrer">
             <img src={reactLogo} className="logo react" alt="React logo" />
           </a>
         </div>

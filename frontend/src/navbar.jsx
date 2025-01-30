@@ -8,6 +8,7 @@ const Navbar = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
+      console.log(user);  
       saveUserData();
     }
   }, [isAuthenticated]);
@@ -15,7 +16,7 @@ const Navbar = () => {
   const saveUserData = async () => {
     if (user) {
       try {
-        const response = await axios.post("http://localhost:3001/auth/save-user", {
+        const response = await axios.post("http://localhost:3001/save-data", {
           name: user.name,
           email: user.email,
           phone: user.phone || null,
