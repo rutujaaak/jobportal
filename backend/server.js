@@ -5,10 +5,12 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 const app = express();
-app.use(cors());
-app.use(express.json()); // For parsing JSON bodies
 
-// MySQL connection
+// Middleware setup
+app.use(cors());
+app.use(express.json());
+
+// MySQL connection setup
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -25,9 +27,10 @@ db.connect((err) => {
   console.log("Connected to MySQL");
 });
 
-// Endpoint to save data
+// Endpoint to save data (from frontend)
 app.post("/save-data", (req, res) => {
   const { name, email, phone } = req.body;
+
   const query = "INSERT INTO users (name, email, phone) VALUES (?, ?, ?)";
 
   db.query(query, [name, email, phone], (err, result) => {
