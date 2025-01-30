@@ -7,7 +7,6 @@ const Navbar = () => {
   const { loginWithRedirect, logout, isAuthenticated, user, isLoading } = useAuth0();
 
   useEffect(() => {
-    // When user is authenticated, send user data to backend
     if (isAuthenticated) {
       saveUserData();
     }
@@ -16,10 +15,10 @@ const Navbar = () => {
   const saveUserData = async () => {
     if (user) {
       try {
-        const response = await axios.post("http://localhost:3001/save-data", {
+        const response = await axios.post("http://localhost:3001/auth/save-user", {
           name: user.name,
           email: user.email,
-          phone: user.phone, // Include phone if available
+          phone: user.phone || null,
         });
         console.log("User data saved:", response.data);
       } catch (error) {
